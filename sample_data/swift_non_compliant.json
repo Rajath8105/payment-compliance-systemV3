@@ -1,0 +1,9 @@
+{
+  "id": "PMT003",
+  "scheme": "SWIFT_MT103",
+  "amount": 50000.00,
+  "currency": "USD",
+  "ordering_customer": "Chase Manhattan Bank New York",
+  "beneficiary": "HSBC Bank PLC London Branch",
+  "remittance_info": "Payment for international trade transaction reference ITR-2024-10-29-GLOBAL-SUPPLY-CHAIN-MANAGEMENT-SERVICES-INCLUDING-LOGISTICS-AND-WAREHOUSING-FOR-Q4-OPERATIONS-INVOICE-INV2024Q4FINAL"
+}

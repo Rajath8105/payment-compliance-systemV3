@@ -1,0 +1,79 @@
+{
+	"Document": {
+		"CdtrPmtActvtnReq": {
+			"GrpHdr": {
+				"MsgId": "DRAW20251029A01",
+				"CreDtTm": "2025-10-29T14:08:00",
+				"NbOfTxs": "1",
+				"InitgPty": {
+					"Nm": "ABC Corporation",
+					"PstlAdr": {
+						"AdrTp": "ADDR",
+						"Dept": "Accounts Receivable",
+						"StrtNm": "Lexington Street",
+						"BldgNb": "123",
+						"PstCd": "19801",
+						"TwnNm": "Wilmington",
+						"CtrySubDvsn": "DE",
+						"Ctry": "US"
+					}
+				}
+			},
+			"PmtInf": {
+				"PmtInfId": "PmtInfDrawdown001",
+				"ReqdExctnDt": "2025-10-30",
+				"Amt": {
+					"InstdAmt": {
+						"_Ccy": "USD",
+						"__text": "10000.00"
+					}
+				},
+				"Cdtr": {
+					"Nm": "ABC Corporation",
+					"Id": {
+						"OrgId": {
+							"Othr": {
+								"Id": "1234567890"
+							}
+						}
+					}
+				},
+				"CdtrAcct": {
+					"Id": {
+						"IBAN": "US1110001111111111"
+					}
+				},
+				"CdtrAgt": {
+					"FinInstnId": {
+						"BIC": "ABCUS33XXX"
+					}
+				},
+				"Dbtr": {
+					"Nm": "XYZ Enterprises"
+				},
+				"DbtrAcct": {
+					"Id": {
+						"IBAN": "US2220002222222222"
+					}
+				},
+				"DbtrAgt": {
+					"FinInstnId": {
+						"BIC": "XYZUS22XXX"
+					}
+				},
+				"RmtInf": {
+					"Ustrd": "Drawdown payment for invoice 12456"
+				}
+			},
+			"SplmtryData": {
+				"Envlp": {
+					"Any": {
+						"AdditionalInfo": "Drawdown request initiated by ABC Corporation for invoice 12456."
+					}
+				}
+			}
+		},
+		"_xmlns": "urn:iso:std:iso:20022:tech:xsd:pain.013.001.06",
+		"_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+	}
+}

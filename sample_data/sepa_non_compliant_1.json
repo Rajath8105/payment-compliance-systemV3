@@ -1,0 +1,12 @@
+{
+  "id": "PMT001",
+  "scheme": "SEPA",
+  "amount": 15000.00,
+  "currency": "EUR",
+  "debtor_iban": "DE89370400440532013000",
+  "creditor_iban": "FR1420041010050500013M02606",
+  "creditor_bic": "SOGEFRPP",
+  "creditor_name": "XYZ Supplies SARL",
+  "remittance_info": "Invoice 2024-Q3-1234",
+  "purpose_code": null
+}

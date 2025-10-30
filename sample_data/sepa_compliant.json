@@ -1,0 +1,12 @@
+{
+  "id": "PMT002",
+  "scheme": "SEPA",
+  "amount": 5000.00,
+  "currency": "EUR",
+  "debtor_iban": "NL91ABNA0417164300",
+  "creditor_iban": "IT60X0542811101000000123456",
+  "creditor_bic": "BPMIITRRXXX",
+  "creditor_name": "Italian Imports SpA",
+  "remittance_info": "Purchase order PO-2024-567",
+  "purpose_code": "TRAD"
+}

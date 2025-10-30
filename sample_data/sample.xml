@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.013.001.06"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <CdtrPmtActvtnReq>
+        <GrpHdr>
+            <MsgId>DRAW20251029A01</MsgId>
+            <CreDtTm>2025-10-29T14:08:00</CreDtTm>
+            <NbOfTxs>1</NbOfTxs>
+            <InitgPty>
+                <Nm>ABC Corporation</Nm>
+                <PstlAdr>
+                    <AdrTp>ADDR</AdrTp>
+                    <Dept>Accounts Receivable</Dept>
+                    <StrtNm>Lexington Street</StrtNm>
+                    <BldgNb>123</BldgNb>
+                    <PstCd>19801</PstCd>
+                    <TwnNm>Wilmington</TwnNm>
+                    <CtrySubDvsn>DE</CtrySubDvsn>
+                    <Ctry>US</Ctry>
+                </PstlAdr>
+            </InitgPty>
+        </GrpHdr>
+        <PmtInf>
+            <PmtInfId>PmtInfDrawdown001</PmtInfId>
+            <ReqdExctnDt>2025-10-30</ReqdExctnDt>
+            <Amt>
+                <InstdAmt Ccy="USD">10000.00</InstdAmt>
+            </Amt>
+            <Cdtr>
+                <Nm>ABC Corporation</Nm>
+                <Id>
+                    <OrgId>
+                        <Othr>
+                            <Id>1234567890</Id>
+                        </Othr>
+                    </OrgId>
+                </Id>
+            </Cdtr>
+            <CdtrAcct>
+                <Id>
+                    <IBAN>US1110001111111111</IBAN>
+                </Id>
+            </CdtrAcct>
+            <CdtrAgt>
+                <FinInstnId>
+                    <BIC>ABCUS33XXX</BIC>
+                </FinInstnId>
+            </CdtrAgt>
+            <Dbtr>
+                <Nm>XYZ Enterprises</Nm>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <IBAN>US2220002222222222</IBAN>
+                </Id>
+            </DbtrAcct>
+            <DbtrAgt>
+                <FinInstnId>
+                    <BIC>XYZUS22XXX</BIC>
+                </FinInstnId>
+            </DbtrAgt>
+            <RmtInf>
+                <Ustrd>Drawdown payment for invoice 12456</Ustrd>
+            </RmtInf>
+        </PmtInf>
+        <SplmtryData>
+            <Envlp>
+                <Any>
+                    <AdditionalInfo>Drawdown request initiated by ABC Corporation for invoice 12456.</AdditionalInfo>
+                </Any>
+            </Envlp>
+        </SplmtryData>
+    </CdtrPmtActvtnReq>
+</Document>
