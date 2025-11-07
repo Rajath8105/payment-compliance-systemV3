@@ -1,0 +1,30 @@
+# ========================================
+# SOCGEN INTERNAL LLM CONFIGURATION
+# ========================================
+# No external OpenAI/OpenRouter needed!
+
+# SocGen LLM API Endpoint
+SOCGEN_API_URL=https://socgpt-hom.fr.world.socgen:446/api/v1/chat/completions
+
+# Model Selection
+SOCGEN_MODEL=azure-openai-gpt-4-latest
+
+# Application Identity (from your manager's code)
+SOCGEN_APP_NAME=PACS008-Compliance-Validator
+
+# API Key Credentials
+SOCGEN_KEY_NAME=key_2025
+SOCGEN_KEY_VALUE=key_2025
+
+# OAuth Client Credentials (get these from your manager)
+SOCGEN_CLIENT_ID=your_client_id_here
+SOCGEN_CLIENT_SECRET=your_client_secret_here
+
+# ========================================
+# NOTES:
+# ========================================
+# 1. Replace SOCGEN_CLIENT_ID and SOCGEN_CLIENT_SECRET with actual values
+# 2. The system will automatically use SocGen internal LLM
+# 3. No OpenAI/OpenRouter API keys needed
+# 4. All traffic stays within SocGen network
+# ========================================
