@@ -53,14 +53,15 @@ try:
         key_name=SOCGEN_KEY_NAME,
         key_value=SOCGEN_KEY_VALUE,
         client_id=SOCGEN_CLIENT_ID,
-        client_secret=SOCGEN_CLIENT_SECRET,
-        response_format='json'
+        client_secret=SOCGEN_CLIENT_SECRET
+        # Note: streaming and response_format are NOT supported by SocGenAILLM
     )
     print("✅ SocGen Internal LLM: ENABLED")
     print(f"📡 Model: {SOCGEN_MODEL}")
     print(f"🏢 App: {SOCGEN_APP_NAME}")
 except Exception as e:
     print(f"❌ Failed to initialize SocGen LLM: {e}")
+    print(f"💡 Tip: Check that SOCGEN_CLIENT_ID and SOCGEN_CLIENT_SECRET are set in .env")
     raise Exception(f"Cannot initialize SocGen Internal LLM. Check your credentials: {e}")
 
 # Storage - AI-ONLY
@@ -239,7 +240,9 @@ CRITICAL: Base your analysis ONLY on the rulebook content provided above. Do not
 
 If the payment is fully compliant, return an empty violations array.
 
-Return your response as JSON in this exact format:
+IMPORTANT: You MUST return ONLY valid JSON with no additional text, markdown, or explanation.
+
+Return your response as JSON in this EXACT format (no markdown, no code blocks, just raw JSON):
 {{
   "violations": [
     {{
@@ -252,7 +255,9 @@ Return your response as JSON in this exact format:
     }}
   ],
   "confidence": 95.0
-}}"""
+}}
+
+Do NOT wrap the JSON in ```json``` or any other formatting. Return ONLY the raw JSON object."""
 
     try:
         # Call SocGen Internal LLM
@@ -317,7 +322,9 @@ For each rule provide:
 - severity: "high", "medium", or "low"
 - example: A brief example of what would violate this rule
 
-Return JSON:
+IMPORTANT: You MUST return ONLY valid JSON with no additional text, markdown, or explanation.
+
+Return JSON in this EXACT format (no markdown, no code blocks, just raw JSON):
 {{
   "rules": [
     {{
@@ -329,7 +336,9 @@ Return JSON:
       "example": "example-violation"
     }}
   ]
-}}"""
+}}
+
+Do NOT wrap the JSON in ```json``` or any other formatting. Return ONLY the raw JSON object."""
 
     try:
         response = llm._call(prompt)
