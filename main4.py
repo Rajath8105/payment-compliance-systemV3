@@ -14,6 +14,7 @@ import os
 import PyPDF2
 import io
 import dotenv
+import time
 
 # Import SocGen Internal LLM
 from llm_socgenaillm import SocGenAILLM
