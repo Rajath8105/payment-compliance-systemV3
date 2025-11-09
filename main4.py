@@ -68,6 +68,7 @@ except Exception as e:
 # Storage - AI-ONLY
 RULEBOOK_STORAGE = {}  # Stores full PDF text for AI to reference
 PAYMENT_HISTORY = []
+LAST_API_CALL_TIME = 0  # Track last API call to avoid rate limits
 
 # Models
 class Violation(BaseModel):
@@ -194,6 +195,33 @@ def get_text(element, path: str) -> Optional[str]:
 
 # ==================== AI COMPLIANCE CHECKER (SocGen Internal LLM) ====================
 
+def call_llm_with_retry(prompt: str, max_retries: int = 3, retry_delay: int = 10) -> str:
+    """
+    Call SocGen LLM with retry logic for rate limits
+    """
+    for attempt in range(max_retries):
+        try:
+            print(f"🤖 Calling SocGen LLM (attempt {attempt + 1}/{max_retries})...")
+            response = llm._call(prompt)
+            return response
+        except Exception as e:
+            error_msg = str(e).lower()
+            if 'rate limit' in error_msg or 'quota' in error_msg or '429' in error_msg:
+                if attempt < max_retries - 1:
+                    wait_time = retry_delay * (attempt + 1)
+                    print(f"⚠️ Rate limit hit. Waiting {wait_time} seconds before retry...")
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    raise HTTPException(
+                        status_code=429,
+                        detail=f"Azure OpenAI rate limit exceeded. Please wait 60 seconds and try again. Your company has token quotas on the SocGen LLM."
+                    )
+            else:
+                raise e
+    
+    raise HTTPException(status_code=500, detail="Failed to get response from SocGen LLM after retries")
+
 def ai_validate_payment(payment_data: Dict, rulebook_text: str) -> tuple[List[Violation], float]:
     """
     Pure AI validation using SocGen Internal LLM - No hardcoded rules
@@ -262,8 +290,8 @@ Do NOT wrap the JSON in ```json``` or any other formatting. Return ONLY the raw 
 
     try:
         print("🤖 Calling SocGen LLM for payment validation...")
-        # Call SocGen Internal LLM
-        response = llm._call(prompt)
+        # Call SocGen Internal LLM with retry logic
+        response = call_llm_with_retry(prompt, max_retries=2, retry_delay=15)
         
         print(f"📥 Raw LLM Response (first 500 chars): {response[:500]}")
         
@@ -360,7 +388,7 @@ Do NOT wrap the JSON in ```json``` or any other formatting. Return ONLY the raw 
 
     try:
         print("📋 Calling SocGen LLM for rule extraction...")
-        response = llm._call(prompt)
+        response = call_llm_with_retry(prompt, max_retries=1, retry_delay=10)
         
         print(f"📥 Raw LLM Response (first 500 chars): {response[:500]}")
         
